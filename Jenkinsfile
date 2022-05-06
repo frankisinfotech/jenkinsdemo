@@ -10,7 +10,7 @@ pipeline {
   stage ('Publish to DockerHub') {
     steps {
        withDockerRegistry([credentialsId: "docker-hub", url: "" ]) {
-        sh 'docker push frankisinfotech/demoapp:""BUILD_NUMBER""'
+        sh 'docker push frankisinfotech/demoapp:""GIT_COMMIT""'
         }
        }
        }
