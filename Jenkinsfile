@@ -4,7 +4,7 @@ pipeline {
     stage ('Build') {
       steps {
         sh 'printenv'
-        sh 'docker build -t frankisinfotech/demoapp:""BUILD_NUMBER"" .'
+        sh 'docker build -t frankisinfotech/demoapp:""GIT_COMMIT"" .'
         }
        }
   stage ('Publish to DockerHub') {
