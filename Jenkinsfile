@@ -23,6 +23,6 @@ pipeline {
         sh 'docker push public.ecr.aws/t7e2c6o4/frankdemo:latest'
          }
        }
-     }
+     
   }
 }
