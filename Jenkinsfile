@@ -17,5 +17,16 @@ pipeline {
         }
       }
     }
+
+        stage ('Publish to ECR-Private') {
+      steps {
+        withEnv (["AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${env.AWS_SECRET_ACCESS_KEY}", "AWS_DEFAULT_REGION=${env.AWS_DEFAULT_REGION}"]) {
+          sh 'docker login -u AWS -p $(aws ecr get-login-password --region eu-west-1) 765176032689.dkr.ecr.eu-west-1.amazonaws.com'
+          sh 'docker build -t agency-banking .'
+          sh 'docker tag agency-banking:latest 765176032689.dkr.ecr.eu-west-1.amazonaws.com/agency-banking:""$BUILD_ID""'
+          sh 'docker push 765176032689.dkr.ecr.eu-west-1.amazonaws.com/agency-banking:""$BUILD_ID""'
+        }
+      }
+    }
   }
 }
