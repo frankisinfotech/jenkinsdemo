@@ -14,10 +14,6 @@ pipeline {
           sh 'docker build -t agency .'
           sh 'docker tag agency:latest public.ecr.aws/g0b5g9q2/agency:""$BUILD_ID""'
           sh 'docker push public.ecr.aws/g0b5g9q2/agency:""$BUILD_ID""'
-
-          // sh 'docker login -u AWS -p $(aws ecr-public get-login-password --region us-east-1) public.ecr.aws/t7e2c6o4'
-          // sh 'docker tag agency-banking:latest public.ecr.aws/t7e2c6o4/ecr-demoimg:""$BUILD_ID""'
-          // sh 'docker push public.ecr.aws/t7e2c6o4/ecr-demoimg:""$BUILD_ID""'
         }
       }
     }
